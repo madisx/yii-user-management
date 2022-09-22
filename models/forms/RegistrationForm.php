@@ -90,6 +90,7 @@ class RegistrationForm extends Model
 
 		$user = new User();
 		$user->password = $this->password;
+		$user->username = $this->username;
 
 		if ( Yii::$app->getModule('user-management')->useEmailAsLogin )
 		{
@@ -114,16 +115,7 @@ class RegistrationForm extends Model
 					$this->addError('username', UserManagementModule::t('front', 'Could not send confirmation email'));
 				}
 			}
-			else
-			{
-				$user->username = $this->username;
-			}
 		}
-		else
-		{
-			$user->username = $this->username;
-		}
-
 
 		if ( $user->save() )
 		{
