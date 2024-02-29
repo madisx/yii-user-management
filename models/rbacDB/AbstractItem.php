@@ -152,7 +152,7 @@ abstract class AbstractItem extends ActiveRecord
 	public function behaviors()
 	{
 		return [
-			TimestampBehavior::className(),
+			TimestampBehavior::class,
 		];
 	}
 
@@ -234,7 +234,7 @@ abstract class AbstractItem extends ActiveRecord
 	 */
 	public function getGroup()
 	{
-		return $this->hasOne(AuthItemGroup::className(), ['code' => 'group_code']);
+		return $this->hasOne(AuthItemGroup::class, ['code' => 'group_code']);
 	}
 
 	/**
@@ -265,7 +265,7 @@ abstract class AbstractItem extends ActiveRecord
 		$event->trigger(get_called_class(), self::EVENT_BEFORE_ADD_CHILDREN, $event);
 	}
 
-	public static function beforeRemoveChildren($parentName, $childrenNames)
+	public static function beforeRemoveChildren($parentName, $childrenNames, $throwException = false)
 	{
 		$event = new AbstractItemEvent(compact('parentName', 'childrenNames', 'throwException'));
 		$event->trigger(get_called_class(), self::EVENT_BEFORE_REMOVE_CHILDREN, $event);
