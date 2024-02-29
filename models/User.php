@@ -238,7 +238,7 @@ class User extends UserIdentity
 	public function behaviors()
 	{
 		return [
-			TimestampBehavior::className(),
+			TimestampBehavior::class,
 		];
 	}
 
@@ -337,7 +337,7 @@ class User extends UserIdentity
 	 */
 	public function getRoles()
 	{
-		return $this->hasMany(Role::className(), ['name' => 'item_name'])
+		return $this->hasMany(Role::class, ['name' => 'item_name'])
 			->viaTable(Yii::$app->getModule('user-management')->auth_assignment_table, ['user_id'=>'id']);
 	}
 
